@@ -21,6 +21,7 @@ export interface BusTrip {
   boardingPoints?: StopPoint[]
   droppingPoints?: StopPoint[]
   razorpayLink?: string   // Optional static payment link from sheet
+  rating?: number         // Average rating 0–5
 }
 
 export interface Seat {
