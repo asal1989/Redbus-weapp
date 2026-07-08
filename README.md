@@ -142,33 +142,48 @@ When a booking is confirmed, the app sends an email to the operator with full bo
 
 ---
 
-## Deploying to Netlify
+## Deploying to Railway
+
+Railway automatically detects Next.js, builds it, and runs it as a live Node.js server. No complex config needed.
 
 ### First Deploy
 
-1. Push this repo to GitHub/GitLab
-2. Log in to [app.netlify.com](https://app.netlify.com) and click **Add new site → Import an existing project**
-3. Select your repo
-4. Build settings are already in `netlify.toml` — no changes needed
-5. Go to **Site configuration → Environment variables** and add all your `.env.local` keys
-6. Click **Deploy site**
+1. Push this repo to GitHub
+2. Go to [railway.app](https://railway.app) and click **New Project → Deploy from GitHub repo**
+3. Select your repository
+4. Railway auto-detects Next.js and runs `npm run build` + `npm run start`
+5. Go to **Variables** tab in your Railway service and add all your environment variables:
+   ```
+   GOOGLE_SHEETS_CSV_URL=...
+   RAZORPAY_KEY_ID=...
+   RAZORPAY_KEY_SECRET=...
+   NEXT_PUBLIC_APP_URL=https://your-app.railway.app
+   SMTP_HOST=...
+   SMTP_PORT=587
+   SMTP_USER=...
+   SMTP_PASS=...
+   NOTIFY_EMAIL=...
+   ```
+6. Railway gives you a public URL instantly (e.g. `https://your-app.railway.app`)
+
+> **Important:** Set `NEXT_PUBLIC_APP_URL` to your Railway public URL so Razorpay redirects back to the right confirmation page after payment.
 
 ### After Each Content/Code Change
 
 ```bash
 git add .
-git commit -m "update trips or fix"
+git commit -m "your change"
 git push
 ```
 
-Netlify automatically redeploys on push. The live site updates within 1–2 minutes.
+Railway automatically redeploys on every push to your main branch. Live in ~2 minutes.
 
 ### Redeploying Without Code Changes
 
 If you only updated the Google Sheet and want to force a cache refresh:
 
-1. In Netlify dashboard → **Deploys → Trigger deploy → Deploy site**
-2. Or just wait — the Sheet data is cached for 5 minutes; a new visitor will always see fresh data within that window.
+1. In Railway dashboard → your service → **Deployments → Redeploy**
+2. Or just wait — Sheet data is cached for 5 minutes; visitors see fresh data within that window.
 
 ---
 

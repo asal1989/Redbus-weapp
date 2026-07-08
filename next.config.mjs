@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    unoptimized: true, // Required for Netlify static export compatibility
-  },
+  // Railway runs a real Node.js server — image optimisation works natively
 }
 
 export default nextConfig
