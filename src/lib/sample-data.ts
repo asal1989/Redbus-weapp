@@ -118,6 +118,17 @@ const PUNE_MUM_DROPPING = [
   { time: '09:30', name: 'Bandra', address: 'Bandra (West) Bus Stop, Mumbai' },
 ]
 
+const MAS_VLR_BOARDING = [
+  { time: '06:00', name: 'Koyambedu CMBT', address: 'Chennai Mofussil Bus Terminus, Platform 5' },
+  { time: '06:20', name: 'Poonamallee', address: 'Poonamallee Bus Stop, Chennai' },
+  { time: '06:45', name: 'Sriperumbudur', address: 'Sriperumbudur Bus Stand' },
+]
+const MAS_VLR_DROPPING = [
+  { time: '09:30', name: 'Ranipet', address: 'Ranipet Bus Stand, NH-46' },
+  { time: '10:00', name: 'Vellore Bus Stand', address: 'Vellore Central Bus Stand, Long Bazaar' },
+  { time: '10:15', name: 'Vellore CMC', address: 'CMC Hospital Bus Stop, Vellore' },
+]
+
 export const SAMPLE_TRIPS: BusTrip[] = [
   { id: 'BUS001', operator: 'Aruljothi Travels', from: 'Chennai', to: 'Madurai', departure: '21:00', arrival: '04:30', duration: '7h 30m', price: 550, seatsAvailable: 28, totalSeats: 40, busType: 'Seater', acType: 'AC', amenities: ['Water', 'Charging Point'], boardingPoints: MAS_MDU_BOARDING, droppingPoints: MAS_MDU_DROPPING },
   { id: 'BUS002', operator: 'Aruljothi Travels', from: 'Chennai', to: 'Coimbatore', departure: '20:30', arrival: '05:30', duration: '9h 0m', price: 650, seatsAvailable: 18, totalSeats: 36, busType: 'Sleeper', acType: 'AC', amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'], boardingPoints: MAS_CBE_BOARDING, droppingPoints: MAS_CBE_DROPPING },
@@ -146,4 +157,8 @@ export const SAMPLE_TRIPS: BusTrip[] = [
   // Pune → Mumbai
   { id: 'BUS021', operator: 'Aruljothi Travels', from: 'Pune', to: 'Mumbai', departure: '06:00', arrival: '09:00', duration: '3h 0m', price: 399, seatsAvailable: 38, totalSeats: 40, busType: 'Seater', acType: 'AC', amenities: ['Water', 'Charging Point'], boardingPoints: PUNE_MUM_BOARDING, droppingPoints: PUNE_MUM_DROPPING },
   { id: 'BUS022', operator: 'Aruljothi Travels', from: 'Pune', to: 'Mumbai', departure: '08:30', arrival: '11:30', duration: '3h 0m', price: 450, seatsAvailable: 22, totalSeats: 40, busType: 'Seater', acType: 'AC', amenities: ['WiFi', 'Water', 'Charging Point'], boardingPoints: PUNE_MUM_BOARDING, droppingPoints: PUNE_MUM_DROPPING },
+  // Chennai → Vellore
+  { id: 'BUS023', operator: 'Aruljothi Travels', from: 'Chennai', to: 'Vellore', departure: '06:00', arrival: '10:00', duration: '4h 0m', price: 350, seatsAvailable: 30, totalSeats: 40, busType: 'Seater', acType: 'AC', amenities: ['Water', 'Charging Point'], boardingPoints: MAS_VLR_BOARDING, droppingPoints: MAS_VLR_DROPPING },
+  { id: 'BUS024', operator: 'Aruljothi Travels', from: 'Chennai', to: 'Vellore', departure: '08:00', arrival: '12:00', duration: '4h 0m', price: 320, seatsAvailable: 36, totalSeats: 40, busType: 'Seater', acType: 'Non-AC', amenities: ['Water'], boardingPoints: MAS_VLR_BOARDING, droppingPoints: MAS_VLR_DROPPING },
+  { id: 'BUS025', operator: 'Aruljothi Travels', from: 'Chennai', to: 'Vellore', departure: '14:00', arrival: '18:00', duration: '4h 0m', price: 380, seatsAvailable: 24, totalSeats: 40, busType: 'Seater', acType: 'AC', amenities: ['Water', 'Charging Point'], boardingPoints: MAS_VLR_BOARDING, droppingPoints: MAS_VLR_DROPPING },
 ]
