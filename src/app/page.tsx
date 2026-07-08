@@ -48,179 +48,202 @@ export default function HomePage() {
             {/* Right — Aruljothi Travels bus illustration */}
             <div className="flex-1 flex justify-center lg:justify-end">
               <div className="w-full max-w-lg relative drop-shadow-2xl">
-                <svg viewBox="0 0 600 340" className="w-full" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 560 360" className="w-full" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="sunsetSky" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#1a1a4e"/>
-                      <stop offset="40%" stopColor="#c2410c"/>
-                      <stop offset="70%" stopColor="#f97316"/>
+                    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#0f172a"/>
+                      <stop offset="35%" stopColor="#1e1b4b"/>
+                      <stop offset="65%" stopColor="#b91c1c"/>
+                      <stop offset="85%" stopColor="#ea580c"/>
                       <stop offset="100%" stopColor="#fbbf24"/>
                     </linearGradient>
-                    <linearGradient id="busWhite" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#ffffff"/>
-                      <stop offset="100%" stopColor="#e8edf2"/>
-                    </linearGradient>
-                    <linearGradient id="windshield" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#93c5fd" stopOpacity="0.9"/>
-                      <stop offset="100%" stopColor="#bfdbfe" stopOpacity="0.7"/>
-                    </linearGradient>
-                    <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#374151"/>
-                      <stop offset="100%" stopColor="#1f2937"/>
-                    </linearGradient>
-                    <linearGradient id="sunGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                      <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.8"/>
-                      <stop offset="100%" stopColor="#f97316" stopOpacity="0"/>
-                    </linearGradient>
-                    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#fef08a" stopOpacity="1"/>
-                      <stop offset="60%" stopColor="#fbbf24" stopOpacity="0.4"/>
+                    <radialGradient id="sunRad" cx="72%" cy="42%" r="18%">
+                      <stop offset="0%" stopColor="#fef08a"/>
+                      <stop offset="40%" stopColor="#fbbf24" stopOpacity="0.6"/>
                       <stop offset="100%" stopColor="#f97316" stopOpacity="0"/>
                     </radialGradient>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="3" result="blur"/>
-                      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#ffffff"/>
+                      <stop offset="100%" stopColor="#dde6ef"/>
+                    </linearGradient>
+                    <linearGradient id="frontGrad" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#e8f0f8"/>
+                      <stop offset="100%" stopColor="#c5d5e8"/>
+                    </linearGradient>
+                    <linearGradient id="wsGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#7dd3fc" stopOpacity="0.85"/>
+                      <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.6"/>
+                    </linearGradient>
+                    <linearGradient id="winGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#93c5fd" stopOpacity="0.9"/>
+                      <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.7"/>
+                    </linearGradient>
+                    <linearGradient id="roadGrad2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#334155"/>
+                      <stop offset="100%" stopColor="#1e293b"/>
+                    </linearGradient>
+                    <filter id="busShad">
+                      <feDropShadow dx="4" dy="6" stdDeviation="6" floodColor="#000" floodOpacity="0.3"/>
                     </filter>
-                    <clipPath id="busClip">
-                      <rect x="30" y="100" width="520" height="180" rx="14"/>
-                    </clipPath>
                   </defs>
 
-                  {/* === BACKGROUND === */}
-                  <rect width="600" height="340" fill="url(#sunsetSky)" rx="18"/>
-
-                  {/* Sun */}
-                  <circle cx="480" cy="130" r="38" fill="#fef08a" opacity="0.9"/>
-                  <circle cx="480" cy="130" r="55" fill="url(#sunGlow)" opacity="0.5"/>
-
-                  {/* Mountain silhouettes */}
-                  <polygon points="0,220 70,130 140,200 200,110 280,190 340,90 420,170 500,80 600,140 600,260 0,260" fill="#1e1b4b" opacity="0.7"/>
-                  <polygon points="0,240 50,170 120,220 190,150 260,210 350,120 430,190 530,110 600,160 600,280 0,280" fill="#312e81" opacity="0.5"/>
-
-                  {/* Trees (silhouette) */}
-                  {[20,45,550,575].map((x,i) => (
+                  {/* ── BACKGROUND ── */}
+                  <rect width="560" height="360" fill="url(#sky2)" rx="16"/>
+                  {/* Sun glow */}
+                  <circle cx="400" cy="150" r="30" fill="#fef08a" opacity="0.92"/>
+                  <circle cx="400" cy="150" r="60" fill="url(#sunRad)"/>
+                  {/* Mountain layers */}
+                  <polygon points="0,230 60,145 110,190 170,110 240,175 310,95 380,160 440,85 510,140 560,115 560,270 0,270" fill="#1e1b4b" opacity="0.75"/>
+                  <polygon points="0,255 40,185 100,220 160,155 230,205 300,130 370,190 440,115 510,165 560,140 560,290 0,290" fill="#312e81" opacity="0.55"/>
+                  {/* Trees */}
+                  {[18,42,490,516].map((x, i) => (
                     <g key={i}>
-                      <polygon points={`${x},260 ${x+12},220 ${x+24},260`} fill="#14532d" opacity="0.8"/>
-                      <polygon points={`${x+2},245 ${x+12},210 ${x+22},245`} fill="#166534" opacity="0.9"/>
+                      <polygon points={`${x},270 ${x+11},232 ${x+22},270`} fill="#14532d" opacity="0.85"/>
+                      <polygon points={`${x+2},254 ${x+11},220 ${x+20},254`} fill="#15803d" opacity="0.9"/>
                     </g>
                   ))}
-
                   {/* Road */}
-                  <path d="M0,278 Q300,265 600,272 L600,320 Q300,310 0,320 Z" fill="url(#roadGrad)"/>
-                  {/* Road centre line */}
-                  <path d="M60,292 L110,291 M180,291 L230,290 M300,290 L350,290 M420,290 L470,290" stroke="#fbbf24" strokeWidth="2.5" strokeDasharray="35,20" opacity="0.6"/>
-                  {/* Kerb lines */}
-                  <path d="M0,278 Q300,265 600,272" stroke="#6b7280" strokeWidth="1.5" fill="none" opacity="0.5"/>
-                  {/* Grass verge */}
-                  <rect x="0" y="316" width="600" height="24" fill="#14532d" opacity="0.9"/>
+                  <path d="M0,292 Q280,278 560,286 L560,330 Q280,320 0,332 Z" fill="url(#roadGrad2)"/>
+                  <path d="M40,308 L100,307 M170,306 L230,305 M300,305 L360,304 M430,304 L490,303" stroke="#fbbf24" strokeWidth="2.5" strokeDasharray="40,22" opacity="0.55"/>
+                  <path d="M0,292 Q280,278 560,286" stroke="#475569" strokeWidth="1.5" fill="none" opacity="0.5"/>
+                  <rect x="0" y="327" width="560" height="33" fill="#14532d" opacity="0.9"/>
 
-                  {/* ===== BUS BODY ===== */}
-                  {/* Shadow under bus */}
-                  <ellipse cx="295" cy="285" rx="240" ry="10" fill="#000" opacity="0.35"/>
+                  {/* ── BUS SHADOW ── */}
+                  <ellipse cx="295" cy="295" rx="230" ry="10" fill="#000" opacity="0.4"/>
 
-                  {/* Main white body */}
-                  <rect x="30" y="118" width="510" height="160" rx="14" fill="url(#busWhite)" stroke="#d1d5db" strokeWidth="1.5"/>
+                  {/* ════════════════════════════════════
+                       BUS  —  3/4 perspective view
+                       Front face on LEFT, side extending right
+                  ════════════════════════════════════ */}
 
-                  {/* Roof curve */}
-                  <path d="M44,118 Q295,100 546,118" fill="#f1f5f9" stroke="#e2e8f0" strokeWidth="1"/>
-                  <rect x="44" y="103" width="502" height="18" rx="6" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1"/>
+                  {/* ── ROOF ── */}
+                  {/* Side roof */}
+                  <rect x="90" y="108" width="390" height="16" rx="0" fill="#f0f4f8"/>
+                  {/* Front roof (perspective trapezoid) */}
+                  <polygon points="45,112 90,108 90,124 45,130" fill="#dde6ef"/>
+                  {/* Roof top edge */}
+                  <polygon points="45,108 90,104 480,104 480,108 90,108 45,112" fill="#e8edf4" stroke="#c8d5e3" strokeWidth="0.8"/>
 
-                  {/* ── FRONT FACE (right side) ── */}
-                  {/* Front panel */}
-                  <rect x="500" y="110" width="65" height="166" rx="10" fill="#f1f5f9" stroke="#d1d5db" strokeWidth="1.5"/>
+                  {/* ── MAIN SIDE BODY (white upper) ── */}
+                  <rect x="90" y="124" width="390" height="148" rx="0" fill="url(#bodyGrad)"/>
 
-                  {/* Windshield */}
-                  <path d="M506,116 Q558,108 558,116 L558,175 Q540,182 506,178 Z" fill="url(#windshield)" stroke="#93c5fd" strokeWidth="1.5"/>
-                  {/* Windshield glare */}
-                  <path d="M512,120 Q530,114 548,118 L545,130 Q528,126 514,131 Z" fill="white" opacity="0.4"/>
+                  {/* ── FRONT FACE ── */}
+                  <polygon points="45,112 90,108 90,272 45,278" fill="url(#frontGrad)" stroke="#b8c8d8" strokeWidth="1"/>
 
-                  {/* "ARULJOTHI" on windshield band */}
-                  <rect x="503" y="106" width="60" height="14" rx="3" fill="#1e293b"/>
-                  <text x="533" y="116" fontFamily="Arial,sans-serif" fontSize="7" fontWeight="900" fill="white" textAnchor="middle" letterSpacing="0.5">ARULJOTHI</text>
+                  {/* Rear cap */}
+                  <rect x="480" y="104" width="12" height="168" rx="4" fill="#c8d5e3"/>
 
-                  {/* Headlights */}
-                  <rect x="540" y="188" width="24" height="12" rx="3" fill="#fef9c3" stroke="#fbbf24" strokeWidth="1.5"/>
-                  <rect x="542" y="190" width="20" height="8" rx="2" fill="#fde68a"/>
-                  {/* Fog lights */}
-                  <rect x="505" y="246" width="16" height="8" rx="2" fill="#fef3c7" stroke="#f59e0b" strokeWidth="1"/>
+                  {/* ── WINDSHIELD (front face) ── */}
+                  <polygon points="50,118 86,113 86,192 50,198" fill="url(#wsGrad)" stroke="#60a5fa" strokeWidth="1.2"/>
+                  {/* WS glare */}
+                  <polygon points="52,120 84,115 84,132 52,136" fill="white" opacity="0.28"/>
+                  {/* WS divider bar */}
+                  <line x1="50" y1="155" x2="86" y2="152" stroke="#94a3b8" strokeWidth="1.5" opacity="0.6"/>
 
-                  {/* Front bumper */}
-                  <rect x="498" y="255" width="67" height="14" rx="4" fill="#9ca3af" stroke="#6b7280" strokeWidth="1"/>
-                  <rect x="502" y="257" width="59" height="6" rx="2" fill="#d1d5db"/>
+                  {/* "ARULJOTHI" above windshield */}
+                  <polygon points="45,108 90,104 90,112 45,118" fill="#1e293b"/>
+                  <text x="67" y="114" fontFamily="Arial,sans-serif" fontSize="5.5" fontWeight="900" fill="white" textAnchor="middle" letterSpacing="0.3">ARULJOTHI</text>
 
-                  {/* Front grille */}
-                  <rect x="504" y="235" width="28" height="18" rx="3" fill="#374151" stroke="#4b5563" strokeWidth="1"/>
-                  {[238,242,246,250].map((y,i) => (
-                    <line key={i} x1="505" y1={y} x2="531" y2={y} stroke="#6b7280" strokeWidth="0.8"/>
+                  {/* ── HEADLIGHTS ── */}
+                  <rect x="50" y="205" width="32" height="13" rx="3" fill="#fef9c3" stroke="#fbbf24" strokeWidth="1.2"/>
+                  <rect x="52" y="207" width="28" height="9" rx="2" fill="#fde68a" opacity="0.9"/>
+                  {/* DRL strip */}
+                  <rect x="50" y="200" width="32" height="4" rx="2" fill="#fbbf24" opacity="0.7"/>
+
+                  {/* Front bumper / lower face */}
+                  <polygon points="45,246 90,240 90,272 45,278" fill="#94a3b8"/>
+                  <polygon points="47,250 88,244 88,258 47,253" fill="#cbd5e1" opacity="0.6"/>
+                  {/* Grille */}
+                  <polygon points="50,220 86,215 86,238 50,244" fill="#334155"/>
+                  {[218,223,228,233,238].map((y, i) => (
+                    <line key={i} x1="51" y1={y+(i*0.6)} x2="85" y2={y-1+(i*0.6)} stroke="#475569" strokeWidth="0.8"/>
                   ))}
+                  {/* Fog light */}
+                  <polygon points="48,244 68,238 68,244 48,250" fill="#fef3c7" stroke="#f59e0b" strokeWidth="0.8"/>
 
                   {/* Side mirror */}
-                  <rect x="556" y="148" width="16" height="10" rx="2" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="1"/>
-                  <line x1="562" y1="148" x2="556" y2="135" stroke="#9ca3af" strokeWidth="1.5"/>
+                  <rect x="84" y="148" width="18" height="11" rx="2" fill="#dde6ef" stroke="#b8c8d8" strokeWidth="1"/>
+                  <line x1="90" y1="148" x2="86" y2="136" stroke="#94a3b8" strokeWidth="1.5"/>
 
-                  {/* ── SIDE WINDOWS ── */}
-                  {[68, 140, 210, 280, 350, 420].map((x, i) => (
+                  {/* ── SIDE WINDOWS (panoramic strip) ── */}
+                  {/* Window top strip background */}
+                  <rect x="90" y="128" width="390" height="64" rx="0" fill="#1e40af" opacity="0.08"/>
+                  {/* Individual windows */}
+                  {[100, 175, 248, 321, 394].map((x, i) => (
                     <g key={i}>
-                      <rect x={x} y="128" width="62" height="44" rx="5" fill="#bfdbfe" stroke="#93c5fd" strokeWidth="1.2" opacity="0.85"/>
-                      {/* Window glare */}
-                      <rect x={x+4} y="131" width="20" height="8" rx="2" fill="white" opacity="0.35"/>
+                      <rect x={x} y="130" width="65" height="58" rx="4" fill="url(#winGrad)" stroke="#3b82f6" strokeWidth="1" opacity="0.9"/>
+                      {/* glare */}
+                      <rect x={x+4} y="133" width="22" height="9" rx="2" fill="white" opacity="0.3"/>
+                      {/* bottom tint */}
+                      <rect x={x+1} y="175" width="63" height="12" rx="0" fill="#1e40af" opacity="0.15"/>
                     </g>
                   ))}
+                  {/* Window surround chrome strip */}
+                  <rect x="90" y="126" width="390" height="4" rx="0" fill="#cbd5e1" opacity="0.8"/>
+                  <rect x="90" y="188" width="390" height="3" rx="0" fill="#cbd5e1" opacity="0.6"/>
 
-                  {/* ── BLUE WAVE DESIGN (lower panel) ── */}
-                  {/* Base blue band */}
-                  <rect x="30" y="208" width="510" height="50" rx="0" fill="#1e3a8a"/>
-                  <rect x="30" y="208" width="510" height="50" fill="#1d4ed8" opacity="0.3"/>
-
-                  {/* Wave curves */}
-                  <path d="M30,218 Q100,205 180,220 Q260,235 340,215 Q420,198 500,218 L500,230 Q420,210 340,228 Q260,248 180,233 Q100,218 30,230 Z" fill="#3b82f6" opacity="0.7"/>
-                  <path d="M30,228 Q90,215 170,230 Q250,245 330,225 Q410,208 500,225 L500,238 Q410,222 330,240 Q250,258 170,242 Q90,228 30,242 Z" fill="#60a5fa" opacity="0.5"/>
-                  <path d="M30,236 Q110,222 200,238 Q290,254 380,232 Q460,215 500,232 L500,244 Q460,228 380,246 Q290,268 200,252 Q110,236 30,250 Z" fill="#93c5fd" opacity="0.3"/>
+                  {/* ── BLUE WAVE BAND (lower body) ── */}
+                  <rect x="90" y="194" width="390" height="58" fill="#1e3a8a"/>
+                  {/* Wave 1 */}
+                  <path d="M90,204 Q160,194 240,208 Q320,222 400,204 Q450,196 480,204 L480,216 Q450,208 400,218 Q320,236 240,222 Q160,208 90,218 Z" fill="#2563eb" opacity="0.7"/>
+                  {/* Wave 2 */}
+                  <path d="M90,214 Q150,202 230,218 Q310,234 390,212 Q440,202 480,212 L480,226 Q440,216 390,228 Q310,250 230,234 Q150,218 90,230 Z" fill="#3b82f6" opacity="0.5"/>
+                  {/* Wave 3 */}
+                  <path d="M90,222 Q170,208 260,226 Q350,244 430,220 Q460,212 480,220 L480,234 Q460,226 430,236 Q350,260 260,242 Q170,224 90,240 Z" fill="#60a5fa" opacity="0.3"/>
 
                   {/* ── BRAND TEXT ON SIDE ── */}
-                  <text x="270" y="196" fontFamily="Arial Black,Arial,sans-serif" fontSize="22" fontWeight="900" fill="#1e293b" textAnchor="middle" letterSpacing="1">ARULJOTHI</text>
-                  <text x="270" y="218" fontFamily="Arial Black,Arial,sans-serif" fontSize="15" fontWeight="900" fill="#f97316" textAnchor="middle" letterSpacing="2">TRAVELS</text>
+                  <text x="285" y="183" fontFamily="Arial Black,Arial,sans-serif" fontSize="21" fontWeight="900" fill="#0f172a" textAnchor="middle" letterSpacing="1.5">ARULJOTHI</text>
+                  <text x="285" y="204" fontFamily="Arial Black,Arial,sans-serif" fontSize="14" fontWeight="900" fill="#f97316" textAnchor="middle" letterSpacing="3">TRAVELS</text>
 
-                  {/* Orange accent stripe */}
-                  <rect x="30" y="255" width="510" height="5" fill="#f97316"/>
-                  <rect x="30" y="259" width="510" height="2" fill="#fbbf24" opacity="0.6"/>
+                  {/* ── ORANGE ACCENT STRIPE ── */}
+                  <rect x="90" y="249" width="390" height="6" fill="#f97316"/>
+                  <rect x="90" y="254" width="390" height="2" fill="#fbbf24" opacity="0.7"/>
 
-                  {/* Lower white skirt */}
-                  <rect x="30" y="261" width="510" height="17" rx="0" fill="#f1f5f9" stroke="#e2e8f0" strokeWidth="0.5"/>
+                  {/* ── LOWER WHITE SKIRT ── */}
+                  <rect x="90" y="256" width="390" height="16" fill="#f0f4f8"/>
 
-                  {/* Door */}
-                  <rect x="32" y="172" width="30" height="64" rx="4" fill="#f8fafc" stroke="#d1d5db" strokeWidth="1.2"/>
-                  <line x1="47" y1="173" x2="47" y2="235" stroke="#e2e8f0" strokeWidth="1"/>
-                  <circle cx="43" cy="204" r="2.5" fill="#9ca3af"/>
+                  {/* Front skirt */}
+                  <polygon points="45,260 90,256 90,272 45,278" fill="#dde6ef"/>
+
+                  {/* ── DOOR (left side near rear) ── */}
+                  <rect x="460" y="198" width="22" height="58" rx="3" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
+                  <line x1="471" y1="199" x2="471" y2="255" stroke="#e2e8f0" strokeWidth="1"/>
+                  <circle cx="468" cy="228" r="2" fill="#94a3b8"/>
+
+                  {/* ── UNDERCARRIAGE ── */}
+                  <rect x="88" y="270" width="394" height="6" rx="2" fill="#64748b"/>
+                  <polygon points="43,272 90,268 90,274 43,280" fill="#64748b"/>
 
                   {/* ── WHEELS ── */}
-                  {/* Front wheel */}
-                  <circle cx="480" cy="280" r="32" fill="#111827" stroke="#0f172a" strokeWidth="2"/>
-                  <circle cx="480" cy="280" r="22" fill="#1f2937"/>
-                  <circle cx="480" cy="280" r="14" fill="#374151"/>
-                  <circle cx="480" cy="280" r="6" fill="#9ca3af"/>
-                  {/* Wheel spokes */}
-                  {[0,60,120,180,240,300].map((deg,i) => {
-                    const rad = (deg * Math.PI) / 180
-                    return <line key={i} x1={480} y1={280} x2={480 + 13*Math.cos(rad)} y2={280 + 13*Math.sin(rad)} stroke="#6b7280" strokeWidth="2"/>
-                  })}
-                  {/* Front wheel arch */}
-                  <path d="M448,258 Q480,238 512,258" fill="#e2e8f0" stroke="#d1d5db" strokeWidth="1.5"/>
-
-                  {/* Rear wheel */}
-                  <circle cx="155" cy="280" r="32" fill="#111827" stroke="#0f172a" strokeWidth="2"/>
-                  <circle cx="155" cy="280" r="22" fill="#1f2937"/>
-                  <circle cx="155" cy="280" r="14" fill="#374151"/>
-                  <circle cx="155" cy="280" r="6" fill="#9ca3af"/>
-                  {[0,60,120,180,240,300].map((deg,i) => {
-                    const rad = (deg * Math.PI) / 180
-                    return <line key={i} x1={155} y1={280} x2={155 + 13*Math.cos(rad)} y2={280 + 13*Math.sin(rad)} stroke="#6b7280" strokeWidth="2"/>
+                  {/* Rear wheel (left, bigger/closer) */}
+                  <ellipse cx="180" cy="291" rx="34" ry="34" fill="#111827" stroke="#0f172a" strokeWidth="2"/>
+                  <ellipse cx="180" cy="291" rx="24" ry="24" fill="#1e293b"/>
+                  <ellipse cx="180" cy="291" rx="15" ry="15" fill="#374151"/>
+                  <ellipse cx="180" cy="291" rx="6" ry="6" fill="#94a3b8"/>
+                  {[0,51,102,153,204,255,306].map((deg, i) => {
+                    const r = (deg * Math.PI) / 180
+                    return <line key={i} x1={180} y1={291} x2={180+14*Math.cos(r)} y2={291+14*Math.sin(r)} stroke="#4b5563" strokeWidth="2.5"/>
                   })}
                   {/* Rear wheel arch */}
-                  <path d="M123,258 Q155,238 187,258" fill="#e2e8f0" stroke="#d1d5db" strokeWidth="1.5"/>
+                  <path d="M146,268 Q180,248 214,268" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="1.5"/>
 
-                  {/* Chassis underline */}
-                  <rect x="32" y="276" width="466" height="4" rx="2" fill="#9ca3af"/>
+                  {/* Front wheel (right, slightly smaller/farther) */}
+                  <ellipse cx="420" cy="291" rx="32" ry="32" fill="#111827" stroke="#0f172a" strokeWidth="2"/>
+                  <ellipse cx="420" cy="291" rx="22" ry="22" fill="#1e293b"/>
+                  <ellipse cx="420" cy="291" rx="14" ry="14" fill="#374151"/>
+                  <ellipse cx="420" cy="291" rx="5.5" ry="5.5" fill="#94a3b8"/>
+                  {[0,51,102,153,204,255,306].map((deg, i) => {
+                    const r = (deg * Math.PI) / 180
+                    return <line key={i} x1={420} y1={291} x2={420+13*Math.cos(r)} y2={291+13*Math.sin(r)} stroke="#4b5563" strokeWidth="2.5"/>
+                  })}
+                  {/* Front wheel arch */}
+                  <path d="M388,268 Q420,248 452,268" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="1.5"/>
+
+                  {/* Front face wheel (tiny, perspective) */}
+                  <ellipse cx="60" cy="291" rx="18" ry="20" fill="#111827" stroke="#0f172a" strokeWidth="1.5"/>
+                  <ellipse cx="60" cy="291" rx="12" ry="13" fill="#1e293b"/>
+                  <ellipse cx="60" cy="291" rx="7" ry="8" fill="#374151"/>
+                  <ellipse cx="60" cy="291" rx="3" ry="3" fill="#94a3b8"/>
                 </svg>
               </div>
             </div>
