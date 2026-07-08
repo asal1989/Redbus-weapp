@@ -15,7 +15,8 @@ export default function HomePage() {
           src="/bus.jpg"
           alt="Aruljothi Travels luxury coach bus"
           fill
-          className="object-cover object-right"
+          className="object-cover"
+          style={{ objectPosition: '85% center' }}
           priority
         />
         {/* Gradient: solid dark left → transparent right, so bus shows through */}
