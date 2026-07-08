@@ -56,8 +56,7 @@ export default function PopularRoutes() {
 
               {/* Route info */}
               <div className="p-3">
-                <div className="font-bold text-xs text-slate-500 uppercase tracking-wide">{r.from}</div>
-                <div className="font-bold text-sm text-slate-900">{r.to}</div>
+                <div className="font-bold text-sm text-slate-900">{r.from} → {r.to}</div>
                 <div className="mt-1.5">
                   <span className="text-[10px] text-slate-400">From</span>
                   <div className="font-extrabold text-accent-500 text-base leading-none">₹{r.price}</div>
