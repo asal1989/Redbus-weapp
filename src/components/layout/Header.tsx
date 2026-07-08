@@ -17,8 +17,7 @@ export default function Header() {
               <Bus className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-slate-900 tracking-tight">
-              Bus<span className="text-brand-700">Go</span>
-              <span className="text-xs text-slate-400 font-normal ml-1">India</span>
+              Aruljothi<span className="text-brand-700"> Travels</span>
             </span>
           </Link>
 

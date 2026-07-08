@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
     })
 
     await transporter.sendMail({
-      from: `"BusGo Bookings" <${smtpUser}>`,
+      from: `"Aruljothi Travels Bookings" <${smtpUser}>`,
       to: notifyEmail,
       subject: `New Booking ${booking.bookingId} — ${booking.from} → ${booking.to} on ${formatDate(booking.date)}`,
       html: emailHtml,

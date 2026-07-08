@@ -1,21 +1,17 @@
 export const INDIAN_CITIES = [
-  'Agra', 'Ahmedabad', 'Aurangabad', 'Bangalore', 'Belgaum',
-  'Bhopal', 'Bhubaneswar', 'Chennai', 'Coimbatore', 'Delhi',
-  'Dharwad', 'Goa', 'Guntur', 'Hubli', 'Hyderabad',
-  'Indore', 'Jaipur', 'Kanpur', 'Kochi', 'Kolkata',
-  'Lucknow', 'Madurai', 'Mangalore', 'Mumbai', 'Mysore',
-  'Nagpur', 'Nashik', 'Nellore', 'Patna', 'Pune',
-  'Ranchi', 'Salem', 'Surat', 'Thiruvananthapuram', 'Tiruchirappalli',
-  'Tirupati', 'Vadodara', 'Varanasi', 'Vijayawada', 'Visakhapatnam',
+  'Chennai', 'Madurai', 'Coimbatore', 'Tiruchirappalli', 'Salem',
+  'Tirunelveli', 'Vellore', 'Erode', 'Thoothukudi', 'Dindigul',
+  'Thanjavur', 'Kanyakumari', 'Nagercoil', 'Kumbakonam', 'Karur',
+  'Ooty', 'Kodaikanal', 'Pollachi', 'Hosur', 'Krishnagiri',
 ]
 
 export const POPULAR_ROUTES = [
-  { from: 'Mumbai', to: 'Pune' },
-  { from: 'Bangalore', to: 'Chennai' },
-  { from: 'Mumbai', to: 'Goa' },
-  { from: 'Delhi', to: 'Jaipur' },
-  { from: 'Hyderabad', to: 'Bangalore' },
   { from: 'Chennai', to: 'Madurai' },
+  { from: 'Chennai', to: 'Coimbatore' },
+  { from: 'Chennai', to: 'Tiruchirappalli' },
+  { from: 'Madurai', to: 'Coimbatore' },
+  { from: 'Chennai', to: 'Salem' },
+  { from: 'Coimbatore', to: 'Madurai' },
 ]
 
 export const DEPARTURE_SLOTS = [

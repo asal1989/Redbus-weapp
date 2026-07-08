@@ -7,13 +7,13 @@ import Footer from '@/components/layout/Footer'
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
-  title: 'BusGo India — Book Bus Tickets Online',
+  title: 'Aruljothi Travels — Book Bus Tickets Online',
   description:
-    'Book bus tickets across India quickly and securely. Compare operators, choose seats, and pay online with instant confirmation.',
-  keywords: 'bus tickets, book bus, India travel, online bus booking, bus reservation',
+    'Book bus tickets across Tamil Nadu quickly and securely. Choose your seat and pay online with instant confirmation.',
+  keywords: 'bus tickets, Tamil Nadu bus, Aruljothi Travels, online bus booking, Chennai Madurai Coimbatore',
   openGraph: {
-    title: 'BusGo India — Book Bus Tickets Online',
-    description: 'Fast, affordable bus ticket booking across India.',
+    title: 'Aruljothi Travels — Book Bus Tickets Online',
+    description: 'Fast, affordable bus ticket booking across Tamil Nadu.',
     type: 'website',
   },
 }

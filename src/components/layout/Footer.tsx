@@ -12,10 +12,10 @@ export default function Footer() {
               <div className="bg-brand-700 p-1.5 rounded-lg">
                 <Bus className="w-4 h-4 text-white" />
               </div>
-              <span className="text-white font-bold text-lg">BusGo India</span>
+              <span className="text-white font-bold text-lg">Aruljothi Travels</span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Fast, reliable bus ticket booking across India. Compare hundreds of operators and travel comfortably.
+              Trusted bus service across Tamil Nadu. Comfortable, safe and on-time journeys since 1995.
             </p>
           </div>
 
@@ -40,9 +40,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:support@busgo.in" className="flex items-center gap-2 hover:text-white transition-colors">
+                <a href="mailto:support@aruljothitravels.in" className="flex items-center gap-2 hover:text-white transition-colors">
                   <Mail className="w-3.5 h-3.5 shrink-0" />
-                  support@busgo.in
+                  support@aruljothitravels.in
                 </a>
               </li>
             </ul>
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} BusGo India. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Aruljothi Travels. All rights reserved.</p>
           <div className="flex items-center gap-1">
             <Shield className="w-3 h-3 text-green-500" />
             <span>Razorpay Secured Payments</span>

@@ -3,292 +3,199 @@ import { parseCSVRow } from './utils'
 
 // ─── Fallback sample data (used when no Sheet is configured) ─────────────────
 
-// Mumbai → Pune
-const MUMBAI_PUNE_BOARDING = [
-  { time: '05:30', name: 'Dadar', address: 'Dadar Bus Stand, near station' },
-  { time: '05:45', name: 'Sion', address: 'Sion Circle, opposite petrol pump' },
-  { time: '06:00', name: 'Kurla', address: 'LBS Road, Kurla West' },
-  { time: '06:20', name: 'Vashi', address: 'Vashi Bus Depot, Sector 7' },
-]
-const MUMBAI_PUNE_DROPPING = [
-  { time: '09:30', name: 'Wakad', address: 'Wakad Phata, Hinjewadi Road' },
-  { time: '09:50', name: 'Hinjewadi', address: 'Rajiv Gandhi Infotech Park Gate 1' },
-  { time: '10:00', name: 'Shivajinagar', address: 'Shivajinagar Bus Stand' },
-  { time: '10:15', name: 'Swargate', address: 'Swargate Bus Terminal' },
-]
-
-// Bangalore → Chennai
-const BLR_MAS_BOARDING = [
-  { time: '20:30', name: 'Majestic', address: 'Kempegowda Bus Station, Platform 12' },
-  { time: '20:50', name: 'Silk Board', address: 'Silk Board Junction, opp. Forum Mall' },
-  { time: '21:10', name: 'Electronic City', address: 'Infosys Gate 1, Hosur Road' },
-  { time: '21:30', name: 'Hosur', address: 'Hosur Bus Stand, NH-44' },
-]
-const BLR_MAS_DROPPING = [
-  { time: '05:00', name: 'Ambattur', address: 'Ambattur Industrial Estate Bus Stop' },
-  { time: '05:20', name: 'Koyambedu', address: 'CMBT Bus Terminal, Platform 8' },
-  { time: '05:40', name: 'Guindy', address: 'Guindy Bus Stand, Anna Salai' },
-  { time: '06:00', name: 'Tambaram', address: 'Tambaram Bus Terminus' },
-]
-
-// Delhi → Jaipur
-const DEL_JAI_BOARDING = [
-  { time: '06:30', name: 'Kashmere Gate', address: 'ISBT Kashmere Gate, Platform 5' },
-  { time: '07:00', name: 'Dhaula Kuan', address: 'Dhaula Kuan Metro Station' },
-  { time: '07:20', name: 'Gurgaon Sector 14', address: 'IFFCO Chowk, MG Road' },
-]
-const DEL_JAI_DROPPING = [
-  { time: '11:30', name: 'Chomu', address: 'Chomu Bypass, NH-11' },
-  { time: '12:00', name: 'Sindhi Camp', address: 'Sindhi Camp Bus Stand, Jaipur' },
-  { time: '12:15', name: 'Narayan Singh Circle', address: 'Narayan Singh Circle, MI Road' },
-]
-
-// Hyderabad → Bangalore
-const HYD_BLR_BOARDING = [
-  { time: '21:30', name: 'Mahatma Gandhi Bus Station', address: 'MGBS, Imlibun, Platform 18' },
-  { time: '21:50', name: 'LB Nagar', address: 'LB Nagar X Roads, Opp. Big Bazaar' },
-  { time: '22:10', name: 'Shamshabad', address: 'Near Airport Flyover, NH-44' },
-]
-const HYD_BLR_DROPPING = [
-  { time: '05:30', name: 'Hebbal', address: 'Hebbal Flyover, Outer Ring Road' },
-  { time: '05:50', name: 'Majestic', address: 'Kempegowda Bus Station, Bangalore' },
-  { time: '06:10', name: 'Shivajinagar', address: 'Shivajinagar Bus Stand, Bangalore' },
-]
-
-// Mumbai → Goa
-const MUM_GOA_BOARDING = [
-  { time: '13:30', name: 'Borivali', address: 'Borivali Bus Depot, Western Express Hwy' },
-  { time: '14:00', name: 'Dadar', address: 'Dadar TT Circle, Shivaji Park Side' },
-  { time: '14:30', name: 'Vashi', address: 'Vashi Bus Stand, Sector 7' },
-]
-const MUM_GOA_DROPPING = [
-  { time: '21:30', name: 'Panaji', address: 'Panaji Bus Stand, Kadamba Terminal' },
-  { time: '21:50', name: 'Mapusa', address: 'Mapusa Bus Stand, Market Road' },
-  { time: '22:15', name: 'Calangute', address: 'Calangute Market Square' },
-]
-
 // Chennai → Madurai
 const MAS_MDU_BOARDING = [
-  { time: '21:00', name: 'Koyambedu', address: 'CMBT Bus Terminal, Platform 14' },
+  { time: '21:00', name: 'Koyambedu CMBT', address: 'Chennai Mofussil Bus Terminus, Platform 14' },
   { time: '21:20', name: 'Guindy', address: 'Guindy Bus Stand, Anna Salai' },
   { time: '21:45', name: 'Tambaram', address: 'Tambaram Bus Terminus, GST Road' },
+  { time: '22:10', name: 'Chengalpattu', address: 'Chengalpattu Bus Stand, NH-45' },
 ]
 const MAS_MDU_DROPPING = [
+  { time: '04:00', name: 'Dindigul', address: 'Dindigul Bus Stand, NH-44' },
   { time: '04:30', name: 'Madurai Periyar Bus Stand', address: 'Periyar Bus Stand, Madurai' },
-  { time: '04:50', name: 'Anna Nagar', address: 'Anna Nagar, Madurai' },
+  { time: '04:50', name: 'Madurai Anna Nagar', address: 'Anna Nagar Bus Stop, Madurai' },
+]
+
+// Chennai → Coimbatore
+const MAS_CBE_BOARDING = [
+  { time: '20:30', name: 'Koyambedu CMBT', address: 'Chennai Mofussil Bus Terminus, Platform 9' },
+  { time: '20:50', name: 'Guindy', address: 'Guindy Bus Stand, Anna Salai' },
+  { time: '21:15', name: 'Tambaram', address: 'Tambaram Bus Terminus, GST Road' },
+]
+const MAS_CBE_DROPPING = [
+  { time: '05:00', name: 'Avinashi Road', address: 'Avinashi Road, Coimbatore' },
+  { time: '05:20', name: 'Gandhipuram', address: 'Gandhipuram Central Bus Stand, Coimbatore' },
+  { time: '05:40', name: 'Ukkadam', address: 'Ukkadam Bus Terminus, Coimbatore' },
+]
+
+// Chennai → Tiruchirappalli
+const MAS_TRY_BOARDING = [
+  { time: '22:00', name: 'Koyambedu CMBT', address: 'Chennai Mofussil Bus Terminus, Platform 6' },
+  { time: '22:20', name: 'Tambaram', address: 'Tambaram Bus Terminus, GST Road' },
+  { time: '22:45', name: 'Chengalpattu', address: 'Chengalpattu Bus Stand, NH-45' },
+]
+const MAS_TRY_DROPPING = [
+  { time: '04:30', name: 'Ariyamangalam', address: 'Ariyamangalam Junction, Trichy' },
+  { time: '04:50', name: 'Trichy Central Bus Stand', address: 'Central Bus Stand, Trichy' },
+  { time: '05:10', name: 'Srirangam', address: 'Srirangam Bus Stop, Trichy' },
+]
+
+// Madurai → Coimbatore
+const MDU_CBE_BOARDING = [
+  { time: '07:00', name: 'Madurai Periyar Bus Stand', address: 'Periyar Bus Stand, Madurai' },
+  { time: '07:20', name: 'Madurai Anna Nagar', address: 'Anna Nagar Bus Stop, Madurai' },
+  { time: '07:45', name: 'Dindigul', address: 'Dindigul Bus Stand, NH-44' },
+]
+const MDU_CBE_DROPPING = [
+  { time: '11:00', name: 'Pollachi', address: 'Pollachi Bus Stand, Coimbatore District' },
+  { time: '11:30', name: 'Gandhipuram', address: 'Gandhipuram Central Bus Stand, Coimbatore' },
+  { time: '11:50', name: 'Ukkadam', address: 'Ukkadam Bus Terminus, Coimbatore' },
+]
+
+// Chennai → Salem
+const MAS_SLM_BOARDING = [
+  { time: '21:30', name: 'Koyambedu CMBT', address: 'Chennai Mofussil Bus Terminus, Platform 11' },
+  { time: '21:50', name: 'Ambattur', address: 'Ambattur Bus Stop, Chennai' },
+  { time: '22:15', name: 'Vellore', address: 'Vellore Bus Stand, NH-48' },
+]
+const MAS_SLM_DROPPING = [
+  { time: '03:30', name: 'Attur', address: 'Attur Bus Stand, Salem District' },
+  { time: '04:00', name: 'Salem New Bus Stand', address: 'New Bus Stand, Salem' },
+  { time: '04:15', name: 'Salem Old Bus Stand', address: 'Old Bus Stand, Salem' },
+]
+
+// Coimbatore → Madurai
+const CBE_MDU_BOARDING = [
+  { time: '22:00', name: 'Gandhipuram', address: 'Gandhipuram Central Bus Stand, Coimbatore' },
+  { time: '22:20', name: 'Ukkadam', address: 'Ukkadam Bus Terminus, Coimbatore' },
+  { time: '22:45', name: 'Pollachi', address: 'Pollachi Bus Stand, Coimbatore District' },
+]
+const CBE_MDU_DROPPING = [
+  { time: '02:30', name: 'Dindigul', address: 'Dindigul Bus Stand, NH-44' },
+  { time: '03:00', name: 'Madurai Periyar Bus Stand', address: 'Periyar Bus Stand, Madurai' },
+  { time: '03:20', name: 'Madurai Anna Nagar', address: 'Anna Nagar Bus Stop, Madurai' },
 ]
 
 export const SAMPLE_TRIPS: BusTrip[] = [
-  // ── Mumbai → Pune ────────────────────────────────────────────────────────
+  // ── Chennai → Madurai ────────────────────────────────────────────────────
   {
     id: 'BUS001',
-    operator: 'VRL Travels',
-    from: 'Mumbai', to: 'Pune',
-    departure: '06:00', arrival: '10:00', duration: '4h 0m',
-    price: 450, seatsAvailable: 28, totalSeats: 40,
+    operator: 'Aruljothi Travels',
+    from: 'Chennai', to: 'Madurai',
+    departure: '21:00', arrival: '04:30', duration: '7h 30m',
+    price: 550, seatsAvailable: 28, totalSeats: 40,
     busType: 'Seater', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Charging Point'],
-    boardingPoints: MUMBAI_PUNE_BOARDING, droppingPoints: MUMBAI_PUNE_DROPPING,
+    amenities: ['Water', 'Charging Point'],
+    boardingPoints: MAS_MDU_BOARDING, droppingPoints: MAS_MDU_DROPPING,
   },
+  // ── Chennai → Coimbatore ─────────────────────────────────────────────────
   {
     id: 'BUS002',
-    operator: 'SRS Travels',
-    from: 'Mumbai', to: 'Pune',
-    departure: '08:30', arrival: '13:00', duration: '4h 30m',
-    price: 380, seatsAvailable: 15, totalSeats: 40,
-    busType: 'Sleeper', acType: 'Non-AC',
-    amenities: ['Water', 'Blanket'],
-    boardingPoints: MUMBAI_PUNE_BOARDING, droppingPoints: MUMBAI_PUNE_DROPPING,
+    operator: 'Aruljothi Travels',
+    from: 'Chennai', to: 'Coimbatore',
+    departure: '20:30', arrival: '05:30', duration: '9h 0m',
+    price: 650, seatsAvailable: 18, totalSeats: 36,
+    busType: 'Sleeper', acType: 'AC',
+    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'],
+    boardingPoints: MAS_CBE_BOARDING, droppingPoints: MAS_CBE_DROPPING,
   },
   {
     id: 'BUS003',
-    operator: 'Neeta Tours',
-    from: 'Mumbai', to: 'Pune',
-    departure: '14:30', arrival: '18:30', duration: '4h 0m',
-    price: 520, seatsAvailable: 10, totalSeats: 40,
+    operator: 'Aruljothi Travels',
+    from: 'Chennai', to: 'Coimbatore',
+    departure: '22:00', arrival: '07:00', duration: '9h 0m',
+    price: 480, seatsAvailable: 32, totalSeats: 40,
     busType: 'Seater', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Charging Point', 'Live Tracking'],
-    boardingPoints: MUMBAI_PUNE_BOARDING, droppingPoints: MUMBAI_PUNE_DROPPING,
+    amenities: ['Water', 'Charging Point'],
+    boardingPoints: MAS_CBE_BOARDING, droppingPoints: MAS_CBE_DROPPING,
   },
+
+  // ── Chennai → Tiruchirappalli ─────────────────────────────────────────────
   {
     id: 'BUS004',
-    operator: 'KPN Travels',
-    from: 'Mumbai', to: 'Pune',
-    departure: '20:00', arrival: '00:30', duration: '4h 30m',
-    price: 600, seatsAvailable: 20, totalSeats: 36,
-    busType: 'Sleeper', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'],
-    boardingPoints: MUMBAI_PUNE_BOARDING, droppingPoints: MUMBAI_PUNE_DROPPING,
+    operator: 'Aruljothi Travels',
+    from: 'Chennai', to: 'Tiruchirappalli',
+    departure: '22:00', arrival: '05:00', duration: '7h 0m',
+    price: 500, seatsAvailable: 24, totalSeats: 40,
+    busType: 'Seater', acType: 'AC',
+    amenities: ['Water', 'Charging Point'],
+    boardingPoints: MAS_TRY_BOARDING, droppingPoints: MAS_TRY_DROPPING,
   },
   {
     id: 'BUS005',
-    operator: 'Prasanna Purple',
-    from: 'Mumbai', to: 'Pune',
-    departure: '23:00', arrival: '03:30', duration: '4h 30m',
-    price: 350, seatsAvailable: 34, totalSeats: 40,
-    busType: 'Semi-Sleeper', acType: 'Non-AC',
-    amenities: ['Water', 'Blanket'],
-    boardingPoints: MUMBAI_PUNE_BOARDING, droppingPoints: MUMBAI_PUNE_DROPPING,
-  },
-
-  // ── Mumbai → Goa ─────────────────────────────────────────────────────────
-  {
-    id: 'BUS006',
-    operator: 'Paulo Travels',
-    from: 'Mumbai', to: 'Goa',
-    departure: '14:00', arrival: '22:00', duration: '8h 0m',
-    price: 850, seatsAvailable: 10, totalSeats: 36,
+    operator: 'Aruljothi Travels',
+    from: 'Chennai', to: 'Tiruchirappalli',
+    departure: '21:30', arrival: '04:30', duration: '7h 0m',
+    price: 680, seatsAvailable: 10, totalSeats: 36,
     busType: 'Sleeper', acType: 'AC',
     amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'],
-    boardingPoints: MUM_GOA_BOARDING, droppingPoints: MUM_GOA_DROPPING,
+    boardingPoints: MAS_TRY_BOARDING, droppingPoints: MAS_TRY_DROPPING,
+  },
+
+  // ── Madurai → Coimbatore ─────────────────────────────────────────────────
+  {
+    id: 'BUS006',
+    operator: 'Aruljothi Travels',
+    from: 'Madurai', to: 'Coimbatore',
+    departure: '07:00', arrival: '11:30', duration: '4h 30m',
+    price: 350, seatsAvailable: 30, totalSeats: 40,
+    busType: 'Seater', acType: 'AC',
+    amenities: ['Water', 'Charging Point'],
+    boardingPoints: MDU_CBE_BOARDING, droppingPoints: MDU_CBE_DROPPING,
   },
   {
     id: 'BUS007',
-    operator: 'Neeta Tours',
-    from: 'Mumbai', to: 'Goa',
-    departure: '22:30', arrival: '07:30', duration: '9h 0m',
-    price: 950, seatsAvailable: 6, totalSeats: 36,
-    busType: 'Sleeper', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'],
-    boardingPoints: MUM_GOA_BOARDING, droppingPoints: MUM_GOA_DROPPING,
-  },
-  {
-    id: 'BUS008',
-    operator: 'VRL Travels',
-    from: 'Mumbai', to: 'Goa',
-    departure: '16:30', arrival: '01:00', duration: '8h 30m',
-    price: 750, seatsAvailable: 24, totalSeats: 40,
+    operator: 'Aruljothi Travels',
+    from: 'Madurai', to: 'Coimbatore',
+    departure: '22:30', arrival: '03:00', duration: '4h 30m',
+    price: 520, seatsAvailable: 14, totalSeats: 36,
     busType: 'Semi-Sleeper', acType: 'AC',
     amenities: ['Water', 'Blanket', 'Charging Point'],
-    boardingPoints: MUM_GOA_BOARDING, droppingPoints: MUM_GOA_DROPPING,
+    boardingPoints: MDU_CBE_BOARDING, droppingPoints: MDU_CBE_DROPPING,
   },
 
-  // ── Bangalore → Chennai ───────────────────────────────────────────────────
+  // ── Chennai → Salem ───────────────────────────────────────────────────────
   {
-    id: 'BUS009',
-    operator: 'KPN Travels',
-    from: 'Bangalore', to: 'Chennai',
-    departure: '21:00', arrival: '05:30', duration: '8h 30m',
-    price: 650, seatsAvailable: 22, totalSeats: 40,
-    busType: 'Sleeper', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'],
-    boardingPoints: BLR_MAS_BOARDING, droppingPoints: BLR_MAS_DROPPING,
-  },
-  {
-    id: 'BUS010',
-    operator: 'SRS Travels',
-    from: 'Bangalore', to: 'Chennai',
-    departure: '22:00', arrival: '06:00', duration: '8h 0m',
-    price: 550, seatsAvailable: 30, totalSeats: 40,
+    id: 'BUS008',
+    operator: 'Aruljothi Travels',
+    from: 'Chennai', to: 'Salem',
+    departure: '21:30', arrival: '04:00', duration: '6h 30m',
+    price: 420, seatsAvailable: 28, totalSeats: 40,
     busType: 'Seater', acType: 'AC',
     amenities: ['Water', 'Charging Point'],
-    boardingPoints: BLR_MAS_BOARDING, droppingPoints: BLR_MAS_DROPPING,
+    boardingPoints: MAS_SLM_BOARDING, droppingPoints: MAS_SLM_DROPPING,
+  },
+  {
+    id: 'BUS009',
+    operator: 'Aruljothi Travels',
+    from: 'Chennai', to: 'Salem',
+    departure: '23:00', arrival: '05:30', duration: '6h 30m',
+    price: 580, seatsAvailable: 8, totalSeats: 36,
+    busType: 'Sleeper', acType: 'AC',
+    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'],
+    boardingPoints: MAS_SLM_BOARDING, droppingPoints: MAS_SLM_DROPPING,
+  },
+
+  // ── Coimbatore → Madurai ─────────────────────────────────────────────────
+  {
+    id: 'BUS010',
+    operator: 'Aruljothi Travels',
+    from: 'Coimbatore', to: 'Madurai',
+    departure: '22:00', arrival: '03:00', duration: '5h 0m',
+    price: 380, seatsAvailable: 22, totalSeats: 40,
+    busType: 'Seater', acType: 'AC',
+    amenities: ['Water', 'Charging Point'],
+    boardingPoints: CBE_MDU_BOARDING, droppingPoints: CBE_MDU_DROPPING,
   },
   {
     id: 'BUS011',
-    operator: 'Orange Tours',
-    from: 'Bangalore', to: 'Chennai',
-    departure: '23:30', arrival: '07:00', duration: '7h 30m',
-    price: 799, seatsAvailable: 8, totalSeats: 36,
-    busType: 'Sleeper', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point', 'Live Tracking'],
-    boardingPoints: BLR_MAS_BOARDING, droppingPoints: BLR_MAS_DROPPING,
-  },
-
-  // ── Delhi → Jaipur ───────────────────────────────────────────────────────
-  {
-    id: 'BUS012',
-    operator: 'National Travels',
-    from: 'Delhi', to: 'Jaipur',
-    departure: '07:00', arrival: '12:30', duration: '5h 30m',
-    price: 400, seatsAvailable: 32, totalSeats: 40,
-    busType: 'Seater', acType: 'AC',
-    amenities: ['Water', 'Charging Point'],
-    boardingPoints: DEL_JAI_BOARDING, droppingPoints: DEL_JAI_DROPPING,
-  },
-  {
-    id: 'BUS013',
-    operator: 'RSRTC Volvo',
-    from: 'Delhi', to: 'Jaipur',
-    departure: '09:30', arrival: '14:30', duration: '5h 0m',
-    price: 480, seatsAvailable: 18, totalSeats: 45,
-    busType: 'Seater', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Charging Point'],
-    boardingPoints: DEL_JAI_BOARDING, droppingPoints: DEL_JAI_DROPPING,
-  },
-  {
-    id: 'BUS014',
-    operator: 'VRL Travels',
-    from: 'Delhi', to: 'Jaipur',
-    departure: '22:00', arrival: '03:30', duration: '5h 30m',
-    price: 699, seatsAvailable: 14, totalSeats: 36,
-    busType: 'Sleeper', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'],
-    boardingPoints: DEL_JAI_BOARDING, droppingPoints: DEL_JAI_DROPPING,
-  },
-
-  // ── Hyderabad → Bangalore ────────────────────────────────────────────────
-  {
-    id: 'BUS015',
-    operator: 'Orange Tours',
-    from: 'Hyderabad', to: 'Bangalore',
-    departure: '22:00', arrival: '06:00', duration: '8h 0m',
-    price: 700, seatsAvailable: 18, totalSeats: 40,
-    busType: 'Semi-Sleeper', acType: 'AC',
-    amenities: ['Water', 'Blanket', 'Charging Point'],
-    boardingPoints: HYD_BLR_BOARDING, droppingPoints: HYD_BLR_DROPPING,
-  },
-  {
-    id: 'BUS016',
-    operator: 'SRS Travels',
-    from: 'Hyderabad', to: 'Bangalore',
-    departure: '20:30', arrival: '05:00', duration: '8h 30m',
-    price: 899, seatsAvailable: 5, totalSeats: 36,
-    busType: 'Sleeper', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point', 'Live Tracking'],
-    boardingPoints: HYD_BLR_BOARDING, droppingPoints: HYD_BLR_DROPPING,
-  },
-  {
-    id: 'BUS017',
-    operator: 'KPN Travels',
-    from: 'Hyderabad', to: 'Bangalore',
-    departure: '23:30', arrival: '08:00', duration: '8h 30m',
-    price: 599, seatsAvailable: 26, totalSeats: 40,
-    busType: 'Seater', acType: 'AC',
-    amenities: ['Water', 'Charging Point'],
-    boardingPoints: HYD_BLR_BOARDING, droppingPoints: HYD_BLR_DROPPING,
-  },
-
-  // ── Chennai → Madurai ────────────────────────────────────────────────────
-  {
-    id: 'BUS018',
-    operator: 'KPN Travels',
-    from: 'Chennai', to: 'Madurai',
-    departure: '21:00', arrival: '04:30', duration: '7h 30m',
-    price: 580, seatsAvailable: 20, totalSeats: 40,
-    busType: 'Sleeper', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point'],
-    boardingPoints: MAS_MDU_BOARDING, droppingPoints: MAS_MDU_DROPPING,
-  },
-  {
-    id: 'BUS019',
-    operator: 'SRS Travels',
-    from: 'Chennai', to: 'Madurai',
-    departure: '22:30', arrival: '06:00', duration: '7h 30m',
-    price: 450, seatsAvailable: 35, totalSeats: 40,
-    busType: 'Seater', acType: 'AC',
-    amenities: ['Water', 'Charging Point'],
-    boardingPoints: MAS_MDU_BOARDING, droppingPoints: MAS_MDU_DROPPING,
-  },
-  {
-    id: 'BUS020',
-    operator: 'Orange Tours',
-    from: 'Chennai', to: 'Madurai',
-    departure: '20:00', arrival: '03:30', duration: '7h 30m',
-    price: 699, seatsAvailable: 12, totalSeats: 36,
-    busType: 'Sleeper', acType: 'AC',
-    amenities: ['WiFi', 'Water', 'Blanket', 'Charging Point', 'Live Tracking'],
-    boardingPoints: MAS_MDU_BOARDING, droppingPoints: MAS_MDU_DROPPING,
+    operator: 'Aruljothi Travels',
+    from: 'Coimbatore', to: 'Madurai',
+    departure: '06:30', arrival: '11:30', duration: '5h 0m',
+    price: 350, seatsAvailable: 36, totalSeats: 40,
+    busType: 'Seater', acType: 'Non-AC',
+    amenities: ['Water'],
+    boardingPoints: CBE_MDU_BOARDING, droppingPoints: CBE_MDU_DROPPING,
   },
 ]
 
