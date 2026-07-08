@@ -47,13 +47,13 @@ export default function PopularRoutes() {
               <div className="h-24 w-full relative overflow-hidden">
                 <Image
                   src={r.img}
-                  alt={r.from}
+                  alt={r.to}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-1.5 left-2">
-                  <span className="text-[10px] font-bold text-white uppercase tracking-wider">{r.from}</span>
+                  <span className="text-[10px] font-bold text-white uppercase tracking-wider">{r.to}</span>
                 </div>
               </div>
 
