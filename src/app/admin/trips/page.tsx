@@ -186,9 +186,9 @@ export default function AdminTripsPage() {
                 </select>
               </Field>
               <Field label="AC Type">
-                <select value={editing.acType || 'A/C'} onChange={e => f('acType', e.target.value)} className="input-field">
-                  <option>A/C</option>
-                  <option>Non A/C</option>
+                <select value={editing.acType || 'AC'} onChange={e => f('acType', e.target.value)} className="input-field">
+                  <option value="AC">A/C</option>
+                  <option value="Non-AC">Non A/C</option>
                 </select>
               </Field>
               <Field label="Seats Available">
