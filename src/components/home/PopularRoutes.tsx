@@ -3,11 +3,11 @@ import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 
 const ROUTES = [
-  { from: 'Chennai',    to: 'Bengaluru', price: 599, img: '/cities/chennai.jpg'    },
-  { from: 'Coimbatore', to: 'Chennai',   price: 499, img: '/cities/coimbatore.jpg' },
-  { from: 'Madurai',    to: 'Trichy',    price: 440, img: '/cities/madurai.jpg'    },
+  { from: 'Chennai',    to: 'Bengaluru', price: 599, img: '/cities/bengaluru.jpg'  },
+  { from: 'Coimbatore', to: 'Chennai',   price: 499, img: '/cities/chennai.jpg'    },
+  { from: 'Madurai',    to: 'Trichy',    price: 440, img: '/cities/trichy.jpg'     },
   { from: 'Hyderabad',  to: 'Bengaluru', price: 699, img: '/cities/hyderabad.jpg'  },
-  { from: 'Pune',       to: 'Mumbai',    price: 399, img: '/cities/pune.jpg'       },
+  { from: 'Pune',       to: 'Mumbai',    price: 399, img: '/cities/mumbai.jpg'     },
   { from: 'Chennai',    to: 'Salem',     price: 420, img: '/cities/salem.jpg'      },
 ]
 
