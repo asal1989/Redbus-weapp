@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { BusTrip } from './types'
-import { SAMPLE_TRIPS } from './sheets'
+import { SAMPLE_TRIPS } from './sample-data'
 
 const TRIPS_FILE = path.join(process.cwd(), 'data', 'trips.json')
 
