@@ -11,7 +11,7 @@ import { INDIAN_CITIES } from '@/lib/constants'
 const EMPTY_TRIP: Partial<ManagedTrip> = {
   operator: 'Aruljothi Travels',
   busType: 'Sleeper',
-  acType: 'A/C',
+  acType: 'AC',
   seatsAvailable: 40,
   price: 500,
   active: true,
@@ -186,9 +186,9 @@ export default function AdminTripsPage() {
                 </select>
               </Field>
               <Field label="AC Type">
-                <select value={editing.acType || 'A/C'} onChange={e => f('acType', e.target.value)} className="input-field">
-                  <option>A/C</option>
-                  <option>Non A/C</option>
+                <select value={editing.acType || 'AC'} onChange={e => f('acType', e.target.value)} className="input-field">
+                  <option>AC</option>
+                  <option>Non-AC</option>
                 </select>
               </Field>
               <Field label="Seats Available">
