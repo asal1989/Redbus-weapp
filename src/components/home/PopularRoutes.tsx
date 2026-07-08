@@ -52,9 +52,6 @@ export default function PopularRoutes() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-1.5 left-2">
-                  <span className="text-[10px] font-bold text-white uppercase tracking-wider">{r.to}</span>
-                </div>
               </div>
 
               {/* Route info */}
