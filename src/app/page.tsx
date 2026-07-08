@@ -9,61 +9,51 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative bg-brand-950 overflow-hidden">
-        {/* Subtle grid texture */}
-        <div className="absolute inset-0 opacity-[0.06]"
-          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
+      <section className="relative overflow-hidden" style={{ minHeight: '320px' }}>
+        {/* Full-width background bus photo */}
+        <Image
+          src="/bus.jpg"
+          alt="Aruljothi Travels luxury coach bus"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        {/* Dark gradient overlay so text is readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-950/70 to-brand-950/20" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center pt-10 pb-8 gap-8">
-
-            {/* Left — copy + search */}
-            <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-semibold px-3 py-1.5 rounded-full mb-5 border border-white/10">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                TRUSTED BY 10,000+ TRAVELLERS
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
-                Book Bus Tickets<br />
-                <span className="text-accent-400">Across Tamil Nadu</span>
-              </h1>
-              <p className="text-brand-300 text-base sm:text-lg max-w-md mx-auto lg:mx-0 mb-6">
-                Compare operators, choose your seat, and travel comfortably — all in minutes.
-              </p>
-              {/* Mini trust pills */}
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start text-sm text-white/70 mb-8">
-                {[
-                  { icon: '🏷️', label: 'Best Prices Guaranteed' },
-                  { icon: '📍', label: 'Live Bus Tracking' },
-                  { icon: '🔒', label: 'Secure Payments' },
-                  { icon: '🎧', label: '24/7 Customer Support' },
-                ].map(({ icon, label }) => (
-                  <span key={label} className="flex items-center gap-1.5">
-                    <span>{icon}</span>{label}
-                  </span>
-                ))}
-              </div>
-
-              {/* Search form inline in hero */}
-              <div className="w-full">
-                <HeroSearch />
-              </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-16">
+          {/* Text row */}
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 border border-white/10">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              TRUSTED BY 10,000+ TRAVELLERS
             </div>
-
-            {/* Right — Aruljothi Travels bus photo */}
-            <div className="flex-1 flex justify-center lg:justify-end">
-              <div className="w-full max-w-lg relative">
-                <Image
-                  src="/bus.jpg"
-                  alt="Aruljothi Travels luxury coach bus"
-                  width={900}
-                  height={600}
-                  className="w-full h-auto object-contain drop-shadow-2xl"
-                  priority
-                />
-              </div>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-3">
+              Book Bus Tickets<br />
+              <span className="text-accent-400">Across Tamil Nadu</span>
+            </h1>
+            <p className="text-white/75 text-sm sm:text-base max-w-sm mb-5">
+              Compare operators, choose your seat, and travel comfortably — all in minutes.
+            </p>
+            {/* Mini trust pills */}
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm text-white/70">
+              {[
+                { icon: '🏷️', label: 'Best Prices Guaranteed' },
+                { icon: '📍', label: 'Live Bus Tracking' },
+                { icon: '🔒', label: 'Secure Payments' },
+                { icon: '🎧', label: '24/7 Customer Support' },
+              ].map(({ icon, label }) => (
+                <span key={label} className="flex items-center gap-1.5">
+                  <span>{icon}</span>{label}
+                </span>
+              ))}
             </div>
           </div>
+        </div>
+
+        {/* Search card pinned to bottom of hero */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-0 -mb-10">
+          <HeroSearch />
         </div>
       </section>
 
