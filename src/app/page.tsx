@@ -16,7 +16,7 @@ export default function HomePage() {
             src="/bus.jpg"
             alt="Aruljothi Travels luxury coach bus"
             fill
-            className="object-contain object-right-center"
+            className="object-contain object-right-top"
             priority
           />
           {/* Fade into dark bg on left edge */}
