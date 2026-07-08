@@ -9,21 +9,21 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
-        {/* Full-width background bus photo — positioned right so bus is visible */}
-        <Image
-          src="/bus.jpg"
-          alt="Aruljothi Travels luxury coach bus"
-          fill
-          className="object-cover"
-          style={{ objectPosition: '85% center' }}
-          priority
-        />
-        {/* Gradient: solid dark left → transparent right, so bus shows through */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/80 to-transparent" />
+      <section className="relative bg-brand-950 overflow-hidden lg:min-h-[420px]">
+        {/* Bus image positioned absolutely on the right */}
+        <div className="absolute top-0 right-0 w-[55%] h-full hidden lg:block">
+          <Image
+            src="/bus.jpg"
+            alt="Aruljothi Travels luxury coach bus"
+            fill
+            className="object-contain object-right-center"
+            priority
+          />
+          {/* Fade into dark bg on left edge */}
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-brand-950 to-transparent" />
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
-          {/* Text row */}
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 border border-white/10">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
@@ -36,7 +36,6 @@ export default function HomePage() {
             <p className="text-white/75 text-sm sm:text-base max-w-sm mb-5">
               Compare operators, choose your seat, and travel comfortably — all in minutes.
             </p>
-            {/* Mini trust pills */}
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm text-white/70">
               {[
                 { icon: '🏷️', label: 'Best Prices Guaranteed' },
@@ -50,9 +49,21 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+
+          {/* Mobile: show bus below text */}
+          <div className="mt-6 lg:hidden">
+            <Image
+              src="/bus.jpg"
+              alt="Aruljothi Travels luxury coach bus"
+              width={900}
+              height={600}
+              className="w-full h-auto object-contain"
+              priority
+            />
+          </div>
         </div>
 
-        {/* Search card pinned to bottom of hero */}
+        {/* Search card */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-0 -mb-10">
           <HeroSearch />
         </div>
