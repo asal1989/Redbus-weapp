@@ -39,6 +39,16 @@ function SeatSelectionContent() {
   const [contactPhone, setContactPhone]     = useState('')
   const [formErrors, setFormErrors]         = useState<Record<string, string>>({})
 
+  // Passenger history: pre-fill contact from localStorage
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('aruljothi_passenger') || '{}')
+      if (saved.contactName)  setContactName(saved.contactName)
+      if (saved.contactEmail) setContactEmail(saved.contactEmail)
+      if (saved.contactPhone) setContactPhone(saved.contactPhone)
+    } catch {}
+  }, [])
+
   useEffect(() => {
     if (!busId) { setLoading(false); return }
     fetch(`/api/trips?id=${encodeURIComponent(busId)}`)
@@ -116,6 +126,10 @@ function SeatSelectionContent() {
       bookingId: generateBookingId(),
     }
     sessionStorage.setItem('busgo_booking', JSON.stringify(booking))
+    // Save contact details for next time
+    try {
+      localStorage.setItem('aruljothi_passenger', JSON.stringify({ contactName, contactEmail, contactPhone }))
+    } catch {}
     router.push('/booking')
   }
 

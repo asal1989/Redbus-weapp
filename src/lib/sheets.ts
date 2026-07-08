@@ -234,6 +234,15 @@ function parseSheetRow(headers: string[], values: string[]): BusTrip | null {
 // ─── Main fetch function ──────────────────────────────────────────────────────
 
 export async function fetchAllTrips(): Promise<BusTrip[]> {
+  // Check admin-managed trips first (set via /admin/trips)
+  try {
+    const { getAllManagedTrips } = await import('./trips')
+    const managed = getAllManagedTrips()
+    if (managed.length > 0) {
+      return managed.filter(t => t.active).map(({ active, trackingUrl, ...trip }) => trip)
+    }
+  } catch { /* fallthrough */ }
+
   const csvUrl = process.env.GOOGLE_SHEETS_CSV_URL
   const apiKey = process.env.GOOGLE_SHEETS_API_KEY
   const sheetId = process.env.GOOGLE_SHEETS_ID

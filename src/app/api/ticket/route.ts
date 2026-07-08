@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getBookingById } from '@/lib/bookings'
+import { getManagedTrip } from '@/lib/trips'
 import QRCode from 'qrcode'
 
 function fmt12h(t: string) {
@@ -14,6 +15,8 @@ export async function GET(req: NextRequest) {
 
   const b = getBookingById(bookingId)
   if (!b) return new NextResponse('Booking not found', { status: 404 })
+  const managedTrip = getManagedTrip(b.busId)
+  const trackingUrl = managedTrip?.trackingUrl
 
   const qrDataUrl = await QRCode.toDataURL(
     `Booking: ${b.bookingId} | ${b.from}→${b.to} | ${b.date} | Seats: ${b.seats.join(',')}`,
@@ -116,6 +119,10 @@ export async function GET(req: NextRequest) {
       <tbody>${passengerRows}</tbody>
     </table>
   </div>
+
+  ${trackingUrl ? `<div style="padding:10px 24px;border-top:1px dashed #e2e8f0;background:#eff6ff">
+    <a href="${trackingUrl}" target="_blank" rel="noopener noreferrer" style="color:#1e3a8a;font-size:13px;font-weight:600;text-decoration:none">📍 Live Tracking — Click to view bus location on Google Maps</a>
+  </div>` : ''}
 
   <div class="bottom">
     <div>

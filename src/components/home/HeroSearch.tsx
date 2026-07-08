@@ -10,9 +10,11 @@ import clsx from 'clsx'
 
 export default function HeroSearch() {
   const router = useRouter()
+  const [tripType, setTripType] = useState<'one-way' | 'round'>('one-way')
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
   const [date, setDate] = useState(getTomorrowDate())
+  const [returnDate, setReturnDate] = useState('')
   const [error, setError] = useState('')
 
   function swapCities() {
@@ -25,8 +27,14 @@ export default function HeroSearch() {
     if (!to.trim()) { setError('Please select a destination city'); return }
     if (from === to) { setError('Departure and destination cannot be the same'); return }
     if (!date) { setError('Please select a travel date'); return }
+    if (tripType === 'round' && !returnDate) { setError('Please select a return date'); return }
     setError('')
-    router.push(`/search?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}`)
+    const params = new URLSearchParams({ from, to, date })
+    if (tripType === 'round' && returnDate) {
+      params.set('returnDate', returnDate)
+      params.set('tripType', 'round')
+    }
+    router.push(`/search?${params.toString()}`)
   }
 
   function handlePopularRoute(f: string, t: string) {
@@ -39,7 +47,21 @@ export default function HeroSearch() {
     <div className="w-full max-w-2xl mx-auto px-4">
       {/* Search card */}
       <div className="bg-white rounded-2xl shadow-2xl p-5 sm:p-7">
-        <h2 className="text-lg font-bold text-slate-800 mb-5">Search Buses</h2>
+        {/* One Way / Round Trip toggle */}
+        <div className="flex gap-1 bg-slate-100 rounded-xl p-1 mb-5 w-fit">
+          {(['one-way', 'round'] as const).map(t => (
+            <button
+              key={t}
+              onClick={() => setTripType(t)}
+              className={clsx(
+                'px-4 py-1.5 rounded-lg text-sm font-semibold transition-all',
+                tripType === t ? 'bg-white text-brand-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              )}
+            >
+              {t === 'one-way' ? 'One Way' : 'Round Trip'}
+            </button>
+          ))}
+        </div>
 
         {/* City selectors */}
         <div className="relative flex flex-col sm:flex-row gap-3 sm:gap-0 sm:items-stretch">
@@ -73,21 +95,38 @@ export default function HeroSearch() {
           </div>
         </div>
 
-        {/* Date */}
-        <div className="mt-3">
-          <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">
-            Travel Date
-          </label>
-          <div className="flex items-center gap-2 border-2 border-slate-200 hover:border-slate-300 focus-within:border-brand-600 rounded-xl px-3 py-3 bg-white transition-colors">
-            <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
-            <input
-              type="date"
-              value={date}
-              min={getTodayDate()}
-              onChange={e => setDate(e.target.value)}
-              className="flex-1 outline-none text-slate-900 text-sm bg-transparent font-medium"
-            />
+        {/* Date(s) */}
+        <div className={`mt-3 grid gap-3 ${tripType === 'round' ? 'grid-cols-2' : 'grid-cols-1'}`}>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">
+              {tripType === 'round' ? 'Departure Date' : 'Travel Date'}
+            </label>
+            <div className="flex items-center gap-2 border-2 border-slate-200 hover:border-slate-300 focus-within:border-brand-600 rounded-xl px-3 py-3 bg-white transition-colors">
+              <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
+              <input
+                type="date"
+                value={date}
+                min={getTodayDate()}
+                onChange={e => setDate(e.target.value)}
+                className="flex-1 outline-none text-slate-900 text-sm bg-transparent font-medium"
+              />
+            </div>
           </div>
+          {tripType === 'round' && (
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Return Date</label>
+              <div className="flex items-center gap-2 border-2 border-slate-200 hover:border-slate-300 focus-within:border-brand-600 rounded-xl px-3 py-3 bg-white transition-colors">
+                <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
+                <input
+                  type="date"
+                  value={returnDate}
+                  min={date || getTodayDate()}
+                  onChange={e => setReturnDate(e.target.value)}
+                  className="flex-1 outline-none text-slate-900 text-sm bg-transparent font-medium"
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Error */}

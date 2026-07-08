@@ -172,6 +172,12 @@ function ConfirmationContent() {
             Book Another Trip
           </Link>
           <Link
+            href={`/review?bookingId=${booking.bookingId}&busId=${booking.busId}`}
+            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-700 rounded-xl font-semibold transition-colors text-sm"
+          >
+            ⭐ Rate Your Journey
+          </Link>
+          <Link
             href={`/cancel?bookingId=${booking.bookingId}`}
             className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-red-200 hover:bg-red-50 text-red-600 rounded-xl font-semibold transition-colors text-sm"
           >
