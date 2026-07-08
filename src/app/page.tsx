@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import HeroSearch from '@/components/home/HeroSearch'
 import TrustSignals from '@/components/home/TrustSignals'
 import PopularRoutes from '@/components/home/PopularRoutes'
@@ -45,10 +46,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right — Aruljothi Travels bus illustration */}
+            {/* Right — Aruljothi Travels bus photo */}
             <div className="flex-1 flex justify-center lg:justify-end">
-              <div className="w-full max-w-lg relative drop-shadow-2xl">
-                <svg viewBox="0 0 560 360" className="w-full" xmlns="http://www.w3.org/2000/svg">
+              <div className="w-full max-w-lg relative">
+                <Image src="/bus.jpg" alt="Aruljothi Travels luxury coach bus" width={900} height={600} className="w-full h-auto object-contain drop-shadow-2xl" priority />
+                {/* SVG removed — replaced by bus.jpg above */}
+                <svg viewBox="0 0 1 1" className="hidden" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="#0f172a"/>
