@@ -155,20 +155,28 @@ function ConfirmationContent() {
 
         {/* Actions */}
         <div className="space-y-3">
+          <a
+            href={`/api/ticket?bookingId=${booking.bookingId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-800 hover:bg-brand-900 text-white rounded-xl font-bold transition-colors text-sm"
+          >
+            <Download className="w-4 h-4" />
+            Download / Print Ticket
+          </a>
           <Link
             href="/"
-            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-800 hover:bg-brand-900 text-white rounded-xl font-bold transition-colors text-sm"
+            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl font-semibold transition-colors text-sm"
           >
             <Home className="w-4 h-4" />
             Book Another Trip
           </Link>
-          <a
-            href="tel:+911800000000"
-            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl font-semibold transition-colors text-sm"
+          <Link
+            href={`/cancel?bookingId=${booking.bookingId}`}
+            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-red-200 hover:bg-red-50 text-red-600 rounded-xl font-semibold transition-colors text-sm"
           >
-            <Phone className="w-4 h-4" />
-            Contact Support
-          </a>
+            Cancel Booking
+          </Link>
         </div>
 
         <p className="text-center text-xs text-slate-400 mt-6">

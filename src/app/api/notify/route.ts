@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import twilio from 'twilio'
 import { BookingDetails } from '@/lib/types'
 import { formatDate, formatTime, formatPrice } from '@/lib/utils'
 
@@ -65,6 +66,25 @@ export async function POST(req: NextRequest) {
       </div>
     </div>
   `
+
+  // Twilio SMS/WhatsApp (graceful no-op if env vars not set)
+  const twilioSid   = process.env.TWILIO_ACCOUNT_SID
+  const twilioToken = process.env.TWILIO_AUTH_TOKEN
+  const twilioFrom  = process.env.TWILIO_PHONE // e.g. +14155552671 or whatsapp:+14155552671
+
+  if (twilioSid && twilioToken && twilioFrom && booking.contactPhone) {
+    try {
+      const client = twilio(twilioSid, twilioToken)
+      const smsBody = `Aruljothi Travels\nBooking ${booking.bookingId} confirmed!\n${booking.from} → ${booking.to} on ${formatDate(booking.date)}\nSeats: ${booking.selectedSeats.join(', ')}\nTotal: ${formatPrice(booking.totalPrice)}\nHave a safe journey!`
+      const toNum = twilioFrom.startsWith('whatsapp:')
+        ? `whatsapp:${booking.contactPhone}`
+        : booking.contactPhone
+      await client.messages.create({ body: smsBody, from: twilioFrom, to: toNum })
+      console.log('[api/notify] SMS sent to', booking.contactPhone)
+    } catch (smsErr) {
+      console.warn('[api/notify] SMS failed (non-fatal):', smsErr)
+    }
+  }
 
   try {
     const transporter = nodemailer.createTransport({
