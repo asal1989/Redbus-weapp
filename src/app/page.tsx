@@ -1,6 +1,7 @@
 import HeroSearch from '@/components/home/HeroSearch'
 import TrustSignals from '@/components/home/TrustSignals'
 import PopularRoutes from '@/components/home/PopularRoutes'
+import HowItWorks from '@/components/home/HowItWorks'
 import OperatorStrip from '@/components/home/OperatorStrip'
 import FAQ from '@/components/home/FAQ'
 
@@ -240,6 +241,9 @@ export default function HomePage() {
 
       {/* ── Popular routes ───────────────────────────────────────────────── */}
       <PopularRoutes />
+
+      {/* ── How it works ─────────────────────────────────────────────────── */}
+      <HowItWorks />
 
       {/* ── Operator strip ───────────────────────────────────────────────── */}
       <OperatorStrip />
