@@ -11,7 +11,7 @@ import { INDIAN_CITIES } from '@/lib/constants'
 const EMPTY_TRIP: Partial<ManagedTrip> = {
   operator: 'Aruljothi Travels',
   busType: 'Sleeper',
-  acType: 'A/C',
+  acType: 'AC',
   seatsAvailable: 40,
   price: 500,
   active: true,
