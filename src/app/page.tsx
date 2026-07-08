@@ -9,19 +9,19 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ minHeight: '320px' }}>
-        {/* Full-width background bus photo */}
+      <section className="relative overflow-hidden">
+        {/* Full-width background bus photo — positioned right so bus is visible */}
         <Image
           src="/bus.jpg"
           alt="Aruljothi Travels luxury coach bus"
           fill
-          className="object-cover object-center"
+          className="object-cover object-right"
           priority
         />
-        {/* Dark gradient overlay so text is readable */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-950/70 to-brand-950/20" />
+        {/* Gradient: solid dark left → transparent right, so bus shows through */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/80 to-transparent" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-16">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
           {/* Text row */}
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 border border-white/10">
