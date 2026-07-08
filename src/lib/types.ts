@@ -1,3 +1,9 @@
+export interface StopPoint {
+  time: string    // "HH:MM"
+  name: string
+  address: string
+}
+
 export interface BusTrip {
   id: string
   operator: string
@@ -12,13 +18,16 @@ export interface BusTrip {
   busType: 'Sleeper' | 'Seater' | 'Semi-Sleeper'
   acType: 'AC' | 'Non-AC'
   amenities: string[]     // e.g. ["WiFi", "Water", "Charging Point"]
+  boardingPoints?: StopPoint[]
+  droppingPoints?: StopPoint[]
   razorpayLink?: string   // Optional static payment link from sheet
 }
 
 export interface Seat {
-  id: string            // e.g. "3A"
+  id: string            // e.g. "3A", "U2A" (upper), "L2A" (lower)
   row: number
-  col: 'A' | 'B' | 'C' | 'D'
+  col: string
+  deck?: 'upper' | 'lower'
   status: 'available' | 'booked' | 'selected'
 }
 
@@ -42,6 +51,8 @@ export interface BookingDetails {
   acType: string
   amenities: string[]
   selectedSeats: string[]
+  boardingPoint?: StopPoint
+  droppingPoint?: StopPoint
   passengers: Passenger[]
   contactName: string
   contactEmail: string

@@ -21,14 +21,24 @@ function ConfirmationContent() {
       const b: BookingDetails = JSON.parse(stored)
       setBooking(b)
 
-      // Send operator notification (fire-and-forget, best-effort)
+      // Lock seats + send operator notification (fire-and-forget)
       if (!notified) {
         setNotified(true)
+        fetch('/api/booked-seats', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            busId: b.busId,
+            date: b.date,
+            seats: b.selectedSeats,
+            bookingId: b.bookingId,
+          }),
+        }).catch(() => {})
         fetch('/api/notify', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: stored,
-        }).catch(() => {}) // Silently ignore notification failures
+        }).catch(() => {})
       }
     } catch {
       // Booking data not available — show generic confirmation

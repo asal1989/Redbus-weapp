@@ -100,6 +100,8 @@ function BookingContent() {
             <Detail label="Bus Type" value={`${booking.acType} ${booking.busType}`} />
             <Detail label="Duration" value={booking.duration} />
             <Detail label="Seats" value={booking.selectedSeats.join(', ')} />
+            {booking.boardingPoint && <Detail label="Boarding" value={`${booking.boardingPoint.time} — ${booking.boardingPoint.name}`} />}
+            {booking.droppingPoint && <Detail label="Dropping" value={`${booking.droppingPoint.time} — ${booking.droppingPoint.name}`} />}
           </div>
         </div>
 

@@ -2,6 +2,19 @@ import { BusTrip } from './types'
 import { parseCSVRow } from './utils'
 
 // ─── Fallback sample data (used when no Sheet is configured) ─────────────────
+const MUMBAI_PUNE_BOARDING = [
+  { time: '05:30', name: 'Dadar', address: 'Dadar Bus Stand, near station' },
+  { time: '05:45', name: 'Sion', address: 'Sion Circle, opposite petrol pump' },
+  { time: '06:00', name: 'Kurla', address: 'LBS Road, Kurla West' },
+  { time: '06:20', name: 'Vashi', address: 'Vashi Bus Depot, Sector 7' },
+]
+const MUMBAI_PUNE_DROPPING = [
+  { time: '09:30', name: 'Wakad', address: 'Wakad Phata, Hinjewadi Road' },
+  { time: '09:50', name: 'Hinjewadi', address: 'Rajiv Gandhi Infotech Park Gate 1' },
+  { time: '10:00', name: 'Shivajinagar', address: 'Shivajinagar Bus Stand' },
+  { time: '10:15', name: 'Swargate', address: 'Swargate Bus Terminal' },
+]
+
 export const SAMPLE_TRIPS: BusTrip[] = [
   {
     id: 'BUS001',
@@ -17,6 +30,8 @@ export const SAMPLE_TRIPS: BusTrip[] = [
     busType: 'Seater',
     acType: 'AC',
     amenities: ['WiFi', 'Water', 'Charging Point'],
+    boardingPoints: MUMBAI_PUNE_BOARDING,
+    droppingPoints: MUMBAI_PUNE_DROPPING,
   },
   {
     id: 'BUS002',
@@ -32,6 +47,8 @@ export const SAMPLE_TRIPS: BusTrip[] = [
     busType: 'Sleeper',
     acType: 'Non-AC',
     amenities: ['Water', 'Blanket'],
+    boardingPoints: MUMBAI_PUNE_BOARDING,
+    droppingPoints: MUMBAI_PUNE_DROPPING,
   },
   {
     id: 'BUS003',
